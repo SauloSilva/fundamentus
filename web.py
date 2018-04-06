@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 from flask import Flask, jsonify
 from fundamentus import get_data
 from datetime import datetime
@@ -20,4 +21,6 @@ def json_api():
         lista, dia = dict(get_data()), datetime.strftime(datetime.today(), '%d')
         return jsonify(lista)
 
-app.run(debug=True)
+port = int(os.environ.get('PORT', 5000))
+
+app.run(debug=True, port=port)
